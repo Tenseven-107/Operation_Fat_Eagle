@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Prefabs/FX/Background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/UI/UI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/FX/Overlay.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Objects/Country.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Utils/CountryContainer.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Utils/CountryManager.gd" type="Script" id=6]
 [ext_resource path="res://Sprites/Map/Map.png" type="Texture" id=7]
 
 [node name="Main" type="Node2D"]
@@ -10,6 +13,7 @@
 [node name="Background" parent="." instance=ExtResource( 1 )]
 
 [node name="Overlay" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
@@ -20,6 +24,53 @@ position = Vector2( 128, 64 )
 texture = ExtResource( 7 )
 
 [node name="Plane_container" type="Node2D" parent="Map"]
+
+[node name="CountryManager" type="Node" parent="Map"]
+script = ExtResource( 6 )
+country_container_path = NodePath("../Country_container")
+
+[node name="Country_container" type="Node2D" parent="Map"]
+script = ExtResource( 5 )
+plane_container_path = NodePath("../Plane_container")
+
+[node name="Country" parent="Map/Country_container" instance=ExtResource( 4 )]
+position = Vector2( 31, 26 )
+countries = [ NodePath("../Country4"), NodePath("../Country12"), NodePath("../Country11"), NodePath("../Country10"), NodePath("../Country9"), NodePath("../Country8"), NodePath("../Country7") ]
+
+[node name="Country2" parent="Map/Country_container" instance=ExtResource( 4 )]
+position = Vector2( 67, 25 )
+countries = [ NodePath("../Country5"), NodePath("../Country7"), NodePath("../Country8"), NodePath("../Country9"), NodePath("../Country10"), NodePath("../Country11"), NodePath("../Country12") ]
+
+[node name="Country3" parent="Map/Country_container" instance=ExtResource( 4 )]
+position = Vector2( 89, 51 )
+countries = [ NodePath("../Country7"), NodePath("../Country8"), NodePath("../Country9"), NodePath("../Country10"), NodePath("../Country11"), NodePath("../Country12") ]
+
+[node name="Country4" parent="Map/Country_container" instance=ExtResource( 4 )]
+position = Vector2( 118, 30 )
+
+[node name="Country5" parent="Map/Country_container" instance=ExtResource( 4 )]
+position = Vector2( 43, 82 )
+
+[node name="Country6" parent="Map/Country_container" instance=ExtResource( 4 )]
+position = Vector2( 77, 81 )
+
+[node name="Country7" parent="Map/Country_container" instance=ExtResource( 4 )]
+position = Vector2( 58, 109 )
+
+[node name="Country8" parent="Map/Country_container" instance=ExtResource( 4 )]
+position = Vector2( 153, 102 )
+
+[node name="Country9" parent="Map/Country_container" instance=ExtResource( 4 )]
+position = Vector2( 213, 70 )
+
+[node name="Country10" parent="Map/Country_container" instance=ExtResource( 4 )]
+position = Vector2( 208, 111 )
+
+[node name="Country11" parent="Map/Country_container" instance=ExtResource( 4 )]
+position = Vector2( 191, 34 )
+
+[node name="Country12" parent="Map/Country_container" instance=ExtResource( 4 )]
+position = Vector2( 163, 48 )
 
 [node name="Operation_container" type="Node2D" parent="Map"]
 

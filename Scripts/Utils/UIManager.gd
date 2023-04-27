@@ -5,7 +5,7 @@ onready var money_meter = $Money_meter
 onready var tax_meter = $Tax_progress
 
 export (NodePath) var money_manager_path = null
-var money_manager: MoneyManager
+var money_manager: MoneyManager = null
 
 export (int) var added_money: int = 1
 

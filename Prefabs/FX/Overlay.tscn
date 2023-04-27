@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/FX/PlayAnimation.gd" type="Script" id=1]
 [ext_resource path="res://FX/Shaders/CRT.tres" type="Material" id=2]
+[ext_resource path="res://Audio/SFX/Boots/Bootup-1.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=9]
 resource_name = "Bootup"
@@ -29,6 +30,20 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Boot_sound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -65,6 +80,9 @@ material = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+
+[node name="Boot_sound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 3 )
 
 [node name="Overlay_anims" type="AnimationPlayer" parent="Control"]
 anims/Bootup = SubResource( 9 )

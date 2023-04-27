@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "MoneyManager",
+"language": "GDScript",
+"path": "res://Scripts/Utils/MoneyManager.gd"
+} ]
+_global_script_class_icons={
+"MoneyManager": ""
+}
+
 [application]
 
 config/name="Operation_Fat_Eagle"

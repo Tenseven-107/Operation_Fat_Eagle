@@ -1,0 +1,121 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Sprites/UI/Farm_button.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/UI/Offshore_button.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/UI/Tax_ring.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/UI/Misc_UI.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/UI/Money_bar.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/UI/Money_slider.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/Utils/UIManager.gd" type="Script" id=7]
+[ext_resource path="res://Prefabs/Utils/MoneyManager.tscn" type="PackedScene" id=8]
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 90, 22 )
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 22, 22 )
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 226, 15 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="MoneyManager" parent="." instance=ExtResource( 8 )]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+money_manager_path = NodePath("../MoneyManager")
+
+[node name="Misc_UI" type="TextureRect" parent="Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -122.0
+margin_top = -45.0
+margin_right = 122.0
+margin_bottom = -1.0
+rect_pivot_offset = Vector2( 122, 22 )
+texture = ExtResource( 4 )
+
+[node name="Interactables" type="Control" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Farm_button" type="Button" parent="Control/Interactables"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -45.0
+margin_top = -23.0
+margin_right = 45.0
+margin_bottom = -1.0
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = SubResource( 4 )
+
+[node name="Offshore_button" type="Button" parent="Control/Interactables"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 47.0
+margin_top = -23.0
+margin_right = 69.0
+margin_bottom = -1.0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+
+[node name="Money_meter" type="HSlider" parent="Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -113.0
+margin_top = -39.0
+margin_right = 113.0
+margin_bottom = -23.0
+custom_icons/tick = ExtResource( 6 )
+custom_icons/grabber_disabled = ExtResource( 6 )
+custom_icons/grabber_highlight = ExtResource( 6 )
+custom_icons/grabber = ExtResource( 6 )
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 3 )
+min_value = -200.0
+max_value = 200.0
+editable = false
+
+[node name="Tax_progress" type="TextureProgress" parent="Control"]
+margin_left = 59.0
+margin_top = 141.0
+margin_right = 81.0
+margin_bottom = 163.0
+max_value = 5.0
+step = 0.1
+value = 5.0
+texture_progress = ExtResource( 3 )
+fill_mode = 5
+
+[connection signal="pressed" from="Control/Interactables/Farm_button" to="Control" method="_on_Farm_button_pressed"]

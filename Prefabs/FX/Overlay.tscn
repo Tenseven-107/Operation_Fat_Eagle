@@ -83,6 +83,7 @@ mouse_filter = 2
 
 [node name="Boot_sound" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource( 3 )
+bus = "SFX"
 
 [node name="Overlay_anims" type="AnimationPlayer" parent="Control"]
 anims/Bootup = SubResource( 9 )

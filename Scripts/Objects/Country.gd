@@ -44,6 +44,8 @@ func damage(damage: int):
 		print("Hit!") # testing
 		pass # put stuff later
 
+	GlobalSignals.emit_signal("camera_shake", 200, 0.1, 400)
+	GlobalSignals.emit_signal("hitstop", 0.1)
 
 
 # Compare pos

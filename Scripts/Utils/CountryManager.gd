@@ -9,7 +9,10 @@ var spawn_timer: Timer
 export (float) var spawn_time: float = 7.5
 
 
+# Set up
 func _ready():
+	randomize()
+
 	country_container = get_node(country_container_path)
 	instance_timer()
 
@@ -25,5 +28,8 @@ func instance_timer():
 	spawn_timer.start()
 
 
+
+# Spawn a new plane after cooldown
 func spawn_timeout():
+	spawn_timer.start()
 	country_container.spawn_plane()

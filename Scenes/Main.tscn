@@ -13,7 +13,6 @@
 [node name="Background" parent="." instance=ExtResource( 1 )]
 
 [node name="Overlay" parent="." instance=ExtResource( 3 )]
-visible = false
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 
@@ -47,30 +46,39 @@ countries = [ NodePath("../Country7"), NodePath("../Country8"), NodePath("../Cou
 
 [node name="Country4" parent="Map/Country_container" instance=ExtResource( 4 )]
 position = Vector2( 118, 30 )
+countries = [ NodePath("../Country7"), NodePath("../Country"), NodePath("../Country5"), NodePath("../Country11"), NodePath("../Country9"), NodePath("../Country10"), NodePath("../Country8") ]
 
 [node name="Country5" parent="Map/Country_container" instance=ExtResource( 4 )]
 position = Vector2( 43, 82 )
+countries = [ NodePath("../Country"), NodePath("../Country4"), NodePath("../Country12"), NodePath("../Country8"), NodePath("../Country10"), NodePath("../Country9") ]
 
 [node name="Country6" parent="Map/Country_container" instance=ExtResource( 4 )]
 position = Vector2( 77, 81 )
+countries = [ NodePath("../Country"), NodePath("../Country2"), NodePath("../Country12"), NodePath("../Country8"), NodePath("../Country11"), NodePath("../Country9"), NodePath("../Country10") ]
 
 [node name="Country7" parent="Map/Country_container" instance=ExtResource( 4 )]
 position = Vector2( 58, 109 )
+countries = [ NodePath("../Country"), NodePath("../Country2"), NodePath("../Country3"), NodePath("../Country4"), NodePath("../Country8"), NodePath("../Country9"), NodePath("../Country10"), NodePath("../Country11"), NodePath("../Country12") ]
 
 [node name="Country8" parent="Map/Country_container" instance=ExtResource( 4 )]
 position = Vector2( 153, 102 )
+countries = [ NodePath("../Country9"), NodePath("../Country11"), NodePath("../Country12"), NodePath("../Country3"), NodePath("../Country2"), NodePath("../Country"), NodePath("../Country5"), NodePath("../Country6"), NodePath("../Country7") ]
 
 [node name="Country9" parent="Map/Country_container" instance=ExtResource( 4 )]
 position = Vector2( 213, 70 )
+countries = [ NodePath("../Country8"), NodePath("../Country3"), NodePath("../Country2"), NodePath("../Country"), NodePath("../Country5"), NodePath("../Country6"), NodePath("../Country7") ]
 
 [node name="Country10" parent="Map/Country_container" instance=ExtResource( 4 )]
 position = Vector2( 208, 111 )
+countries = [ NodePath("../Country11"), NodePath("../Country12"), NodePath("../Country"), NodePath("../Country2"), NodePath("../Country3"), NodePath("../Country4"), NodePath("../Country5"), NodePath("../Country6"), NodePath("../Country7") ]
 
 [node name="Country11" parent="Map/Country_container" instance=ExtResource( 4 )]
 position = Vector2( 191, 34 )
+countries = [ NodePath("../Country10"), NodePath("../Country8"), NodePath("../Country"), NodePath("../Country2"), NodePath("../Country3"), NodePath("../Country4"), NodePath("../Country5"), NodePath("../Country6"), NodePath("../Country7") ]
 
 [node name="Country12" parent="Map/Country_container" instance=ExtResource( 4 )]
 position = Vector2( 163, 48 )
+countries = [ NodePath("../Country10"), NodePath("../Country9"), NodePath("../Country"), NodePath("../Country2"), NodePath("../Country3"), NodePath("../Country4"), NodePath("../Country5"), NodePath("../Country6"), NodePath("../Country7") ]
 
 [node name="Operation_container" type="Node2D" parent="Map"]
 

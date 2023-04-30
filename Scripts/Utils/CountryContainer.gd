@@ -7,6 +7,7 @@ var plane_container = null
 var children: Array
 
 
+# Set up
 func _ready():
 	plane_container = get_node(plane_container_path)
 
@@ -15,6 +16,7 @@ func _ready():
 		child.initialize(plane_container)
 
 
+# Spawn a new plane from a country
 func spawn_plane():
 	var max_country = children.size()
 	var picked_num = rand_range(0, max_country)

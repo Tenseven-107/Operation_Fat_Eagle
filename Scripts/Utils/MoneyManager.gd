@@ -11,6 +11,7 @@ export (int) var tax_money: int = 5
 export (float) var tax_time: float = 5
 
 
+# set up
 func _ready():
 	instance_timer()
 
@@ -25,6 +26,7 @@ func instance_timer():
 	tax_timer.start()
 
 
+# Add and deplete money
 func add_money(added_money: int):
 	money += added_money
 	money = clamp(money, min_money, max_money)

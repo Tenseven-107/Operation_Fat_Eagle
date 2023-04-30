@@ -9,18 +9,33 @@ onready var progress = $HP_bar
 export (int) var max_hp: int = 2
 var hp: int = 2
 
+var this_pos: Vector2 = Vector2.ZERO
+var min_pos: Vector2
+var max_pos: Vector2
+
 export (Array, NodePath) var countries
 
 
+# Set up
+func _ready():
+	this_pos = global_position.round()
+	min_pos = Vector2(this_pos.x + 3, this_pos.y + 3)
+	max_pos = Vector2(this_pos.x + 3, this_pos.y + 3)
+
+
+
+# Spawn a plane
 func spawn_plane():
 	var plane_inst = plane.instance()
 
 	plane_inst.global_position = global_position
-	plane_inst.target_pos = get_random_country()
+	plane_inst.country = get_random_country()
 
 	plane_container.add_child(plane_inst)
 
 
+
+# Take damage
 func damage(damage: int):
 	hp -= damage
 	progress.value = hp
@@ -30,11 +45,17 @@ func damage(damage: int):
 		pass # put stuff later
 
 
+
+# Compare pos
 func check_position(pos: Vector2):
-	if pos == self.global_position: return true
+	if pos == this_pos or (pos >= min_pos and pos <= max_pos):
+		return true
+
 	else: return false
 
 
+
+# Get a random country from assosciated countries
 func get_random_country():
 	var max_number = countries.size()
 	var picked_num = rand_range(0, max_number)
@@ -43,7 +64,12 @@ func get_random_country():
 	return country
 
 
+
+# Initialization
 func initialize(plane_cont: Node):
 	plane_container = plane_cont
+
+
+
 
 

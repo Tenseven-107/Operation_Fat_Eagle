@@ -4,9 +4,12 @@ extends KinematicBody2D
 onready var scale_tween = $Tween
 onready var sprite = $Sprite
 
+onready var hack_timer = $Hack_time
+onready var notice = $Notice
+onready var hack_bar = $Notice/Hack_bar
+
 var country  = null
 var target_pos: Vector2 = Vector2.ZERO
-
 
 var velocity: Vector2
 export (int) var speed: int = 150
@@ -15,6 +18,12 @@ export (float) var take_off_time: float = 5
 export (int) var damage: int = 1
 export (bool) var dangerous: bool = true
 
+var selected: bool = false
+var money_manager  = null
+export (float) var hack_time: float = 4
+export (int) var min_cost: int = 10
+export (int) var max_cost: int = 25
+var price: int
 
 
 # Set up
@@ -24,11 +33,21 @@ func _ready():
 	sprite.scale = Vector2.ZERO
 	take_off(Vector2.ZERO, Vector2(1,1))
 
+	hack_timer.wait_time = hack_time
+	hack_bar.max_value = hack_timer.wait_time
+	price = rand_range(min_cost, max_cost)
+
+	input_pickable = true
+	notice.hide()
+
 
 
 # Process
 func _physics_process(delta):
 	move_loop(delta)
+
+func _process(delta):
+	hacking_loop()
 
 
 # Movement
@@ -59,6 +78,41 @@ func take_off(initial_scale: Vector2, final_scale: Vector2):
 	Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 
 	scale_tween.start()
+
+
+
+# Hacking the plane
+func _on_Plane_mouse_entered():
+	selected = true
+	if dangerous: notice.show()
+
+func _on_Plane_mouse_exited():
+	selected = false
+
+
+func hacking_loop():
+	notice.global_rotation = 0
+	hack_bar.value = hack_time - hack_timer.time_left
+
+	if dangerous and selected and Input.is_action_just_pressed("click") and hack_timer.is_stopped():
+		money_manager.remove_money(price)
+		hack_timer.start()
+
+func _on_Hack_time_timeout():
+	dangerous = false
+	notice.hide()
+
+
+# Initialization
+func initialize(country_obj, money):
+	country = country_obj
+	money_manager = money
+
+
+
+
+
+
 
 
 

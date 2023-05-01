@@ -3,6 +3,7 @@ extends Node2D
 
 export (PackedScene) var plane = preload("res://Prefabs/Objects/Plane.tscn")
 var plane_container = null
+var money_manager = null
 
 onready var progress = $HP_bar
 
@@ -29,7 +30,7 @@ func spawn_plane():
 	var plane_inst = plane.instance()
 
 	plane_inst.global_position = global_position
-	plane_inst.country = get_random_country()
+	plane_inst.initialize(get_random_country(), money_manager)
 
 	plane_container.add_child(plane_inst)
 
@@ -68,8 +69,9 @@ func get_random_country():
 
 
 # Initialization
-func initialize(plane_cont: Node):
+func initialize(plane_cont: Node, money: Node):
 	plane_container = plane_cont
+	money_manager = money
 
 
 

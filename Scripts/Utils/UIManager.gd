@@ -38,3 +38,10 @@ func _on_Farm_button_button_down():
 	GlobalSignals.emit_signal("hitstop", 0.05)
 
 	farm_audio.play()
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@ export (int) var max_money: int = 200
 
 var tax_timer: Timer
 export (int) var tax_money: int = 10
-export (float) var tax_time: float = 5
+export (float) var tax_time: float = 5.5
 
 
 # set up

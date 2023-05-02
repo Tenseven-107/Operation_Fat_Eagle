@@ -8,6 +8,8 @@ onready var hack_timer = $Hack_time
 onready var notice = $Notice
 onready var hack_bar = $Notice/Hack_bar
 
+onready var popup = $Confirm
+
 var country  = null
 var target_pos: Vector2 = Vector2.ZERO
 
@@ -39,6 +41,7 @@ func _ready():
 
 	input_pickable = true
 	notice.hide()
+	popup.hide()
 
 
 
@@ -94,19 +97,32 @@ func hacking_loop():
 	notice.global_rotation = 0
 	hack_bar.value = hack_time - hack_timer.time_left
 
-	if dangerous and selected and Input.is_action_just_pressed("click") and hack_timer.is_stopped():
-		money_manager.remove_money(price)
-		hack_timer.start()
+	if (dangerous and selected and Input.is_action_just_pressed("click")
+	and hack_timer.is_stopped() and !(money_manager.money <= money_manager.min_money)):
+		activate_popup(price)
 
 func _on_Hack_time_timeout():
 	dangerous = false
 	notice.hide()
 
 
+func activate_popup(price: int):
+	popup.dialog_text = "Cost: " + str(price) + " / Current: " + str(money_manager.money)
+	popup.popup()
+
+func _on_Confirm_confirmed():
+	money_manager.remove_money(price)
+	hack_timer.start()
+
+
+
 # Initialization
 func initialize(country_obj, money):
 	country = country_obj
 	money_manager = money
+
+
+
 
 
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Sprites/Objects/Plane.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Objects/Plane.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Objects/Exclamation_mark_small.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/UI/UI_theme-1.tres" type="Theme" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 15, 13 )
@@ -41,6 +42,17 @@ __meta__ = {
 [node name="Hack_time" type="Timer" parent="."]
 one_shot = true
 
+[node name="Confirm" type="ConfirmationDialog" parent="."]
+margin_left = 23.0
+margin_top = 24.0
+margin_right = 223.0
+margin_bottom = 115.0
+theme = ExtResource( 4 )
+resizable = true
+dialog_text = "Cost: 25
+Current: 20"
+
 [connection signal="mouse_entered" from="." to="." method="_on_Plane_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Plane_mouse_exited"]
 [connection signal="timeout" from="Hack_time" to="." method="_on_Hack_time_timeout"]
+[connection signal="confirmed" from="Confirm" to="." method="_on_Confirm_confirmed"]

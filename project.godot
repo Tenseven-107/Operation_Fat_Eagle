@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "MoneyManager",
 "language": "GDScript",
 "path": "res://Scripts/Utils/MoneyManager.gd"
+}, {
+"base": "Node",
+"class": "OPManager",
+"language": "GDScript",
+"path": "res://Scripts/Utils/OPManager.gd"
 } ]
 _global_script_class_icons={
 "CountryManager": "",
 "GameCamera": "",
-"MoneyManager": ""
+"MoneyManager": "",
+"OPManager": ""
 }
 
 [application]

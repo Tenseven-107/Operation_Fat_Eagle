@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/FX/PlayAnimation.gd" type="Script" id=1]
 [ext_resource path="res://FX/Shaders/CRT.tres" type="Material" id=2]
 [ext_resource path="res://Audio/SFX/Boots/Bootup-1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Audio/SFX/Explosions/Bunker_explosion-1.wav" type="AudioStream" id=4]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=9]
 resource_name = "Bootup"
@@ -46,6 +48,9 @@ tracks/2/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=11]
+resource_name = "Hit"
+
 [sub_resource type="Animation" id=10]
 length = 0.001
 tracks/0/type = "value"
@@ -85,8 +90,15 @@ mouse_filter = 2
 stream = ExtResource( 3 )
 bus = "SFX"
 
+[node name="Explosion" type="AudioStreamPlayer" parent="Control"]
+script = ExtResource( 5 )
+samples = [ ExtResource( 4 ) ]
+random_volume_range = 0.3
+random_pitch_range = 0
+
 [node name="Overlay_anims" type="AnimationPlayer" parent="Control"]
 anims/Bootup = SubResource( 9 )
+anims/Hit = SubResource( 11 )
 anims/RESET = SubResource( 10 )
 script = ExtResource( 1 )
 on_awake_anim = "Bootup"

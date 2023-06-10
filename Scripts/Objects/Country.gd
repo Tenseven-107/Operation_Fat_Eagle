@@ -42,11 +42,11 @@ func damage(damage: int):
 	progress.value = hp
 
 	if hp <= 0:
-		print("Hit!") # testing
-		pass # put stuff later
+		GlobalSignals.emit_signal("game_over")
 
-	GlobalSignals.emit_signal("camera_shake", 200, 0.1, 400)
+	GlobalSignals.emit_signal("camera_shake", 600, 1, 1200)
 	GlobalSignals.emit_signal("hitstop", 0.1)
+	GlobalSignals.emit_signal("country_hit")
 
 
 # Compare pos

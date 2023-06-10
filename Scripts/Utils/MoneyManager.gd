@@ -1,6 +1,7 @@
 extends Node
 class_name MoneyManager
 
+var active: bool = true
 
 var money: int = 0
 export (int) var min_money: int = -200
@@ -14,6 +15,9 @@ export (float) var tax_time: float = 5.5
 # set up
 func _ready():
 	instance_timer()
+
+	active = true
+	GlobalSignals.connect("game_over", self, "set_unactive")
 
 func instance_timer():
 	tax_timer = Timer.new()
@@ -40,6 +44,17 @@ func get_tax_time():
 
 
 func tax_timeout():
-	tax_timer.start()
-	remove_money(tax_money)
+	if active:
+		tax_timer.start()
+		remove_money(tax_money)
+
+
+
+# Setting object unactive
+func set_unactive():
+	active = false
+
+
+
+
 

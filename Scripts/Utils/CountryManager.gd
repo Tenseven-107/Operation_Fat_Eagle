@@ -5,6 +5,8 @@ class_name CountryManager
 export (NodePath) var country_container_path = null
 var country_container = null
 
+var active: bool = true
+
 var spawn_timer: Timer
 var current_spawn_time: float
 export (float) var max_spawn_time: float = 20
@@ -20,6 +22,9 @@ func _ready():
 
 	country_container = get_node(country_container_path)
 	instance_timer()
+
+	active = true
+	GlobalSignals.connect("game_over", self, "set_unactive")
 
 
 func instance_timer():
@@ -37,10 +42,11 @@ func instance_timer():
 
 # Spawn a new plane after cooldown
 func spawn_timeout():
-	increase_risk()
+	if active:
+		increase_risk()
 
-	spawn_timer.start()
-	country_container.spawn_plane()
+		spawn_timer.start()
+		country_container.spawn_plane()
 
 
 
@@ -55,6 +61,10 @@ func increase_risk():
 		spawn_timer.wait_time = current_spawn_time
 
 
+
+# Setting object unactive
+func set_unactive():
+	active = false
 
 
 

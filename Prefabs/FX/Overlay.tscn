@@ -1,10 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/FX/PlayAnimation.gd" type="Script" id=1]
 [ext_resource path="res://FX/Shaders/CRT.tres" type="Material" id=2]
 [ext_resource path="res://Audio/SFX/Boots/Bootup-1.wav" type="AudioStream" id=3]
 [ext_resource path="res://Audio/SFX/Explosions/Bunker_explosion-1.wav" type="AudioStream" id=4]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/FX/Rock.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/FX/Overlay.gd" type="Script" id=7]
+[ext_resource path="res://Audio/SFX/Loops/Sirens.wav" type="AudioStream" id=8]
+
+[sub_resource type="Curve" id=12]
+max_value = 2.0
+_data = [ Vector2( 0.00495049, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.207921, 1.41818 ), -2.69333, -2.69333, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="Animation" id=9]
 resource_name = "Bootup"
@@ -47,9 +54,101 @@ tracks/2/keys = {
 "method": "play"
 } ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Overlay:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "Game_over"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Overlay:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.4, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Overlay:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("Sirens")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
 
 [sub_resource type="Animation" id=11]
 resource_name = "Hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Explosion_layer/Particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Explosion")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Overlay:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
+}
 
 [sub_resource type="Animation" id=10]
 length = 0.001
@@ -68,6 +167,7 @@ tracks/0/keys = {
 
 [node name="Overlay" type="CanvasLayer"]
 layer = 10
+script = ExtResource( 7 )
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -77,8 +177,7 @@ mouse_filter = 2
 [node name="Overlay" type="ColorRect" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
-color = Color( 0.0196078, 0, 0.0392157, 1 )
+color = Color( 0, 0, 0, 1 )
 
 [node name="CRT_effect" type="ColorRect" parent="Control"]
 material = ExtResource( 2 )
@@ -86,18 +185,48 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
+[node name="Explosion_layer" type="Control" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Particles" type="CPUParticles2D" parent="Control/Explosion_layer"]
+position = Vector2( 128, -40 )
+emitting = false
+amount = 16
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 6 )
+emission_shape = 2
+emission_rect_extents = Vector2( 128, 1 )
+direction = Vector2( 0, 1 )
+initial_velocity = 400.0
+initial_velocity_random = 1.0
+angle = 720.0
+angle_random = 1.0
+scale_amount = 1.5
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 12 )
+
 [node name="Boot_sound" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource( 3 )
 bus = "SFX"
 
 [node name="Explosion" type="AudioStreamPlayer" parent="Control"]
+bus = "SFX"
 script = ExtResource( 5 )
 samples = [ ExtResource( 4 ) ]
 random_volume_range = 0.3
 random_pitch_range = 0
 
+[node name="Sirens" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource( 8 )
+bus = "SFX"
+
 [node name="Overlay_anims" type="AnimationPlayer" parent="Control"]
 anims/Bootup = SubResource( 9 )
+anims/Game_over = SubResource( 13 )
 anims/Hit = SubResource( 11 )
 anims/RESET = SubResource( 10 )
 script = ExtResource( 1 )

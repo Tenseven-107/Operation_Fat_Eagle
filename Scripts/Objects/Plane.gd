@@ -10,11 +10,16 @@ onready var hack_bar = $Notice/Hack_bar
 
 onready var popup = $Confirm
 
+onready var warning_audio = $Audio/Warning
+onready var alert_audio = $Audio/Alert
+onready var notification_audio = $Audio/Notification
+onready var disarm_audio = $Audio/Disarm
+
 var country  = null
 var target_pos: Vector2 = Vector2.ZERO
 
 var velocity: Vector2
-export (int) var speed: int = 150
+export (int) var speed: int = 250
 export (float) var take_off_time: float = 5
 
 export (int) var damage: int = 1
@@ -42,6 +47,8 @@ func _ready():
 	input_pickable = true
 	notice.hide()
 	popup.hide()
+
+	GlobalSignals.connect("game_over", self, "queue_free")
 
 
 
@@ -87,7 +94,9 @@ func take_off(initial_scale: Vector2, final_scale: Vector2):
 # Hacking the plane
 func _on_Plane_mouse_entered():
 	selected = true
-	if dangerous: notice.show()
+	if dangerous: 
+		notice.show()
+		warning_audio.play()
 
 func _on_Plane_mouse_exited():
 	selected = false
@@ -105,14 +114,21 @@ func _on_Hack_time_timeout():
 	dangerous = false
 	notice.hide()
 
+	disarm_audio.play()
+	GlobalSignals.emit_signal("camera_zoom", 1.1, 0.05, 1.1)
+
 
 func activate_popup(price: int):
 	popup.dialog_text = "Cost: " + str(price) + " / Current: " + str(money_manager.money)
 	popup.popup()
 
+	alert_audio.play()
+
 func _on_Confirm_confirmed():
 	money_manager.remove_money(price)
 	hack_timer.start()
+
+	notification_audio.play()
 
 
 

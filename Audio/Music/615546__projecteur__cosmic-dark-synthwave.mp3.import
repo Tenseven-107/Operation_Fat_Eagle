@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/615546__projecteur__cosmic-dark-synthwave.mp3-28628748d77370c00e607bdc9870f36f.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/615546__projecteur__cosmic-dark-synthwave.mp3"
+dest_files=[ "res://.import/615546__projecteur__cosmic-dark-synthwave.mp3-28628748d77370c00e607bdc9870f36f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

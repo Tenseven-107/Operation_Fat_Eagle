@@ -11,9 +11,13 @@ onready var offshore_button = $Interactables/Offshore_progress/Offshore_button
 onready var offshore_warning = $Popups/Offshore_warning
 onready var offshore_buy = $Popups/Offshore_buy
 
+onready var popup_audio = $Audio/Popup
+onready var notification_audio = $Audio/Notification
+onready var alert_audio = $Audio/Alert
+
 export (PackedScene) var dollar_fx: PackedScene
 export (Vector2) var dollar_fx_pos: Vector2 = Vector2(129, 152)
-onready var farm_audio = $Audio/farm
+onready var farm_audio = $Audio/Farm
 
 export (NodePath) var money_manager_path = null
 var money_manager: MoneyManager = null
@@ -62,7 +66,10 @@ func _on_Farm_button_button_down():
 # Upgrade offshore operations
 func _on_Offshore_button_pressed():
 	if (op_manager.fully_upgraded or 
-	(money_manager.money - op_manager.price) <= 0): offshore_warning.popup()
+	(money_manager.money - op_manager.price) <= 0): 
+		offshore_warning.popup()
+
+		alert_audio.play()
 	else:
 		offshore_buy.dialog_text = ("Upgrade Offshore Operations: " + 
 		"Cost: " + str(op_manager.price) + " / Current: " + str(money_manager.money) + 
@@ -70,7 +77,14 @@ func _on_Offshore_button_pressed():
 
 		offshore_buy.popup()
 
+		popup_audio.play()
+
 
 
 func _on_Offshore_buy_confirmed():
 	op_manager.upgrade()
+
+	notification_audio.play()
+
+
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Sprites/UI/Farm_button.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/UI/Offshore_button.png" type="Texture" id=2]
@@ -16,6 +16,9 @@
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=14]
 [ext_resource path="res://Prefabs/Utils/OPManager.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Sprites/UI/UI_theme-1.tres" type="Theme" id=16]
+[ext_resource path="res://Audio/SFX/Beeps/Eagle_OS_notification.wav" type="AudioStream" id=17]
+[ext_resource path="res://Audio/SFX/Beeps/Eagle_OS_alert.wav" type="AudioStream" id=18]
+[ext_resource path="res://Audio/SFX/Beeps/Eagle_OS_popup.wav" type="AudioStream" id=19]
 
 [sub_resource type="StyleBoxTexture" id=4]
 texture = ExtResource( 1 )
@@ -173,7 +176,7 @@ dialog_text = "Upgrade Offshore Operations"
 
 [node name="Audio" type="Node" parent="Control"]
 
-[node name="farm" type="AudioStreamPlayer" parent="Control/Audio"]
+[node name="Farm" type="AudioStreamPlayer" parent="Control/Audio"]
 pitch_scale = 2.0
 bus = "SFX"
 script = ExtResource( 14 )
@@ -181,6 +184,18 @@ samples = [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource
 random_strategy = 1
 random_volume_range = 0
 random_pitch_range = 0
+
+[node name="Popup" type="AudioStreamPlayer" parent="Control/Audio"]
+stream = ExtResource( 19 )
+bus = "SFX"
+
+[node name="Notification" type="AudioStreamPlayer" parent="Control/Audio"]
+stream = ExtResource( 17 )
+bus = "SFX"
+
+[node name="Alert" type="AudioStreamPlayer" parent="Control/Audio"]
+stream = ExtResource( 18 )
+bus = "SFX"
 
 [connection signal="button_down" from="Control/Interactables/Farm_button" to="Control" method="_on_Farm_button_button_down"]
 [connection signal="pressed" from="Control/Interactables/Offshore_progress/Offshore_button" to="Control" method="_on_Offshore_button_pressed"]

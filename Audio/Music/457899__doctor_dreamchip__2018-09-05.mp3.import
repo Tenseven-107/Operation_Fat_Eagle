@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/457899__doctor_dreamchip__2018-09-05.mp3-a9bd9e389af6450a1a58bff4682a7214.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/457899__doctor_dreamchip__2018-09-05.mp3"
+dest_files=[ "res://.import/457899__doctor_dreamchip__2018-09-05.mp3-a9bd9e389af6450a1a58bff4682a7214.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

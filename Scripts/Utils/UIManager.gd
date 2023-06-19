@@ -15,6 +15,8 @@ onready var popup_audio = $Audio/Popup
 onready var notification_audio = $Audio/Notification
 onready var alert_audio = $Audio/Alert
 
+onready var pause = $Pause
+
 export (PackedScene) var dollar_fx: PackedScene
 export (Vector2) var dollar_fx_pos: Vector2 = Vector2(129, 152)
 onready var farm_audio = $Audio/Farm
@@ -45,6 +47,9 @@ func _process(delta):
 	else:
 		offshore_button.hide()
 		offshore_progress.value = op_manager.get_upgrade_time()
+
+	if Input.is_action_just_pressed("pause") && !pause.active: pause.activation(true)
+	elif Input.is_action_just_pressed("pause") && pause.active: pause.activation(false)
 
 
 # Add money when button is pressed

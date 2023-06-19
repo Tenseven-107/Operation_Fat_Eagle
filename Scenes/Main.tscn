@@ -93,6 +93,7 @@ countries = [ NodePath("../Country10"), NodePath("../Country9"), NodePath("../Co
 [node name="FX_container" type="Node2D" parent="Map"]
 
 [node name="Audio" type="Node" parent="Map"]
+pause_mode = 2
 
 [node name="Computer_loop" type="AudioStreamPlayer" parent="Map/Audio"]
 stream = ExtResource( 9 )

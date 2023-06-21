@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Sprites/UI/Farm_button.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/UI/Offshore_button.png" type="Texture" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://Sprites/UI/Volume_empty.png" type="Texture" id=26]
 [ext_resource path="res://Sprites/UI/Volume_grabber_highlight.png" type="Texture" id=27]
 [ext_resource path="res://Scripts/Utils/Pause.gd" type="Script" id=28]
+[ext_resource path="res://Audio/SFX/Beeps/Change_audio.wav" type="AudioStream" id=29]
 
 [sub_resource type="StyleBoxTexture" id=4]
 texture = ExtResource( 1 )
@@ -331,6 +332,31 @@ theme = ExtResource( 16 )
 custom_fonts/font = SubResource( 10 )
 text = "QUIT"
 
+[node name="Audio" type="Node" parent="Control/Pause"]
+
+[node name="Music_audio" type="AudioStreamPlayer" parent="Control/Pause/Audio"]
+stream = ExtResource( 29 )
+bus = "Music"
+
+[node name="SFX_audio" type="AudioStreamPlayer" parent="Control/Pause/Audio"]
+stream = ExtResource( 29 )
+bus = "SFX"
+
+[node name="Master_audio" type="AudioStreamPlayer" parent="Control/Pause/Audio"]
+stream = ExtResource( 29 )
+
+[node name="Fullscreen_audio" type="AudioStreamPlayer" parent="Control/Pause/Audio"]
+script = ExtResource( 14 )
+samples = [ ExtResource( 17 ) ]
+random_volume_range = 0
+random_pitch_range = 0.7
+
+[node name="Hover_audio" type="AudioStreamPlayer" parent="Control/Pause/Audio"]
+script = ExtResource( 14 )
+samples = [ ExtResource( 19 ) ]
+random_volume_range = 0
+random_pitch_range = 0.7
+
 [node name="Audio" type="Node" parent="Control"]
 
 [node name="Farm" type="AudioStreamPlayer" parent="Control/Audio"]
@@ -358,8 +384,18 @@ bus = "SFX"
 [connection signal="pressed" from="Control/Interactables/Offshore_progress/Offshore_button" to="Control" method="_on_Offshore_button_pressed"]
 [connection signal="confirmed" from="Control/Popups/Offshore_buy" to="Control" method="_on_Offshore_buy_confirmed"]
 [connection signal="tween_all_completed" from="Control/Pause/Tween" to="Control/Pause" method="_on_Tween_tween_all_completed"]
+[connection signal="focus_entered" from="Control/Pause/Items/VBoxContainer/Music_slider" to="Control/Pause" method="_on_Music_slider_focus_entered"]
+[connection signal="mouse_entered" from="Control/Pause/Items/VBoxContainer/Music_slider" to="Control/Pause" method="_on_Music_slider_mouse_entered"]
 [connection signal="value_changed" from="Control/Pause/Items/VBoxContainer/Music_slider" to="Control/Pause" method="_on_Music_slider_value_changed"]
+[connection signal="focus_entered" from="Control/Pause/Items/VBoxContainer/SFX_slider" to="Control/Pause" method="_on_SFX_slider_focus_entered"]
+[connection signal="mouse_entered" from="Control/Pause/Items/VBoxContainer/SFX_slider" to="Control/Pause" method="_on_SFX_slider_mouse_entered"]
 [connection signal="value_changed" from="Control/Pause/Items/VBoxContainer/SFX_slider" to="Control/Pause" method="_on_SFX_slider_value_changed"]
+[connection signal="focus_entered" from="Control/Pause/Items/VBoxContainer/Master_slider" to="Control/Pause" method="_on_Master_slider_focus_entered"]
+[connection signal="mouse_entered" from="Control/Pause/Items/VBoxContainer/Master_slider" to="Control/Pause" method="_on_Master_slider_mouse_entered"]
 [connection signal="value_changed" from="Control/Pause/Items/VBoxContainer/Master_slider" to="Control/Pause" method="_on_Master_slider_value_changed"]
+[connection signal="focus_entered" from="Control/Pause/Items/VBoxContainer/Fullscreen_check" to="Control/Pause" method="_on_Fullscreen_check_focus_entered"]
+[connection signal="mouse_entered" from="Control/Pause/Items/VBoxContainer/Fullscreen_check" to="Control/Pause" method="_on_Fullscreen_check_mouse_entered"]
 [connection signal="toggled" from="Control/Pause/Items/VBoxContainer/Fullscreen_check" to="Control/Pause" method="_on_Fullscreen_check_toggled"]
 [connection signal="button_up" from="Control/Pause/Items/VBoxContainer/Quit" to="Control/Pause" method="_on_Quit_button_up"]
+[connection signal="focus_entered" from="Control/Pause/Items/VBoxContainer/Quit" to="Control/Pause" method="_on_Quit_focus_entered"]
+[connection signal="mouse_entered" from="Control/Pause/Items/VBoxContainer/Quit" to="Control/Pause" method="_on_Quit_mouse_entered"]

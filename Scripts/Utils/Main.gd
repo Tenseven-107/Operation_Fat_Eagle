@@ -6,4 +6,6 @@ onready var country_container = get_node("Map/Country_container")
 
 
 func _ready():
+	TempMemory.reset()
+
 	country_container.initialize(money_manager)

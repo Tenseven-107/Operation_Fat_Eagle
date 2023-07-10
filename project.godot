@@ -45,6 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 GlobalSignals="*res://Scripts/AutoLoads/GlobalSignals.gd"
+TempMemory="*res://Scripts/AutoLoads/TempMemory.gd"
 
 [display]
 

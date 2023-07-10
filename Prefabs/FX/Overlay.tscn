@@ -113,10 +113,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.4, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 0, 0, 1 ), Color( 0.0196078, 0, 0.0392157, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Overlay:visible")
@@ -125,10 +125,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 5.4 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true ]
+"values": [ true, false ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath("End")
@@ -151,10 +151,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ false, true ]
+"values": [ false, true, false ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Top_Overlay:color")
@@ -163,10 +163,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 5, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 5, 5.4, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("CRT_effect:material:shader_param/warp_amount")
@@ -179,6 +179,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ 0.2, 0.2, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("CRT_effect:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 5.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -274,7 +286,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 1, 1, 1, 0 )
+color = Color( 1, 1, 1, 0.500001 )
 
 [node name="Explosion_layer" type="Control" parent="Control"]
 anchor_right = 1.0

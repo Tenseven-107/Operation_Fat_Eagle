@@ -9,7 +9,7 @@ var active: bool = true
 
 var spawn_timer: Timer
 var current_spawn_time: float
-export (float) var max_spawn_time: float = 20
+export (float) var max_spawn_time: float = 45
 export (float) var min_spawn_time: float = 2
 
 var risk: float = 0
@@ -64,6 +64,7 @@ func increase_risk():
 
 # Setting object unactive
 func set_unactive():
+	TempMemory.record_risk_record(risk)
 	active = false
 
 

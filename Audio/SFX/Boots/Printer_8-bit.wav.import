@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Printer_8-bit.wav-72a0e0f9b52dbe48cade5729f5c2eade.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/Boots/Printer_8-bit.wav"
+dest_files=[ "res://.import/Printer_8-bit.wav-72a0e0f9b52dbe48cade5729f5c2eade.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

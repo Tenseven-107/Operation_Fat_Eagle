@@ -35,6 +35,7 @@ texture = ExtResource( 7 )
 [node name="CountryManager" type="Node" parent="Map"]
 script = ExtResource( 6 )
 country_container_path = NodePath("../Country_container")
+max_spawn_time = 2.0
 
 [node name="Country_container" type="Node2D" parent="Map"]
 script = ExtResource( 5 )

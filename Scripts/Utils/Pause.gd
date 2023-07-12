@@ -28,7 +28,6 @@ func _ready():
 	self.modulate = Color.transparent
 
 	set_options()
-
 	GlobalSignals.connect("game_over", self, "set_unactive")
 
 func activation(set_active: bool):
@@ -60,7 +59,7 @@ func set_unactive():
 
 # Setting the options accordingly
 func set_options():
-	fullscreen = OS.window_fullscreen
+	fullscreen.pressed = OS.window_fullscreen
 	music.value = AudioServer.get_bus_volume_db(1)
 	sfx.value = AudioServer.get_bus_volume_db(2)
 	master_.value = AudioServer.get_bus_volume_db(0)
@@ -68,7 +67,30 @@ func set_options():
 
 # Quit
 func _on_Quit_button_up():
+	SaveState.save_game(false)
 	get_tree().quit()
+
+
+
+# Saving stats
+func get_save_stats():
+	return {
+		"options" : {
+			"fullscreen" : OS.window_fullscreen,
+			"music_volume" : AudioServer.get_bus_volume_db(1),
+			"sfx_volume" : AudioServer.get_bus_volume_db(2),
+			"master_volume" : AudioServer.get_bus_volume_db(0)
+		}
+	}
+
+func load_save_stats(stats):
+	OS.window_fullscreen = stats.options.fullscreen
+	music.value = stats.options.music_volume
+	sfx.value = stats.options.sfx_volume
+	master_.value = stats.options.master_volume
+
+	set_options()
+
 
 
 # Fullscreen

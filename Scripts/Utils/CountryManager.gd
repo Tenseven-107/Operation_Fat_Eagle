@@ -16,6 +16,8 @@ var risk: float = 0
 export (float) var risk_increase: float = 0.05
 
 
+
+
 # Set up
 func _ready():
 	randomize()

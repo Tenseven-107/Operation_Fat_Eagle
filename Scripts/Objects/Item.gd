@@ -26,7 +26,7 @@ func instance_objects():
 
 	despawn_timer.wait_time = despawn_time
 	despawn_timer.one_shot = true
-	despawn_timer.connect("timeout", self, "despawn_timeout")
+	despawn_timer.connect("timeout", self, "start_despawn")
 
 	add_child(despawn_timer)
 	despawn_timer.start()
@@ -44,7 +44,7 @@ func instance_objects():
 
 
 # Despawn
-func despawn_timeout():
+func start_despawn():
 	active = true
 
 	tween.interpolate_property(self, "scale", Vector2(1, 1), Vector2.ZERO, despawn_time  / despawn_time, 

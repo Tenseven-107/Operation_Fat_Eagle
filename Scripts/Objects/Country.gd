@@ -6,6 +6,8 @@ var plane_container = null
 var item_container = null
 var money_manager = null
 
+var current_item = null
+
 onready var progress = $HP_bar
 
 export (int) var max_hp: int = 2
@@ -39,12 +41,14 @@ func spawn_plane():
 
 # Spawn an item
 func spawn_item(item: PackedScene):
-	var item_inst = item.instance()
+	if is_instance_valid(current_item) == false:
+		var item_inst = item.instance()
 
-	item_inst.global_position = global_position
-	item_inst.initialize(self, money_manager)
+		item_inst.global_position = global_position
+		item_inst.initialize(self, money_manager)
+		current_item = item_inst
 
-	item_container.add_child(item_inst)
+		item_container.add_child(item_inst)
 
 
 

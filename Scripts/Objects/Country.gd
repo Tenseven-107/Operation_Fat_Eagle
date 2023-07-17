@@ -65,6 +65,16 @@ func damage(damage: int):
 	GlobalSignals.emit_signal("country_hit")
 
 
+# Add hp
+func heal(added_hp: int):
+	if (hp + added_hp > max_hp) == false:
+		hp += added_hp
+		progress.value = hp
+
+		GlobalSignals.emit_signal("camera_shake", 100, 1, 200)
+		GlobalSignals.emit_signal("hitstop", 0.05)
+
+
 # Compare pos
 func check_position(pos: Vector2):
 	if pos == this_pos or (pos >= min_pos and pos <= max_pos):

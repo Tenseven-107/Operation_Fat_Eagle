@@ -6,7 +6,7 @@ var despawn_timer = null
 var tween = null
 
 var country = null
-var money_manager = null
+var money_manager: MoneyManager = null
 
 export (float) var despawn_time: float = 3
 var active: bool = false
@@ -16,6 +16,8 @@ var active: bool = false
 # Set up
 func _ready():
 	active = false
+	scale = Vector2.ZERO
+
 	instance_objects()
 
 
@@ -59,8 +61,8 @@ func despawn():
 
 
 # Initialization
-func initialize(country: Node, money: Node):
-	country = country
+func initialize(country_node: Node, money: Node):
+	country = country_node
 	money_manager = money
 
 

@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Prefabs/Objects/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Audio/SFX/Beeps/Eagle_OS_popup.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sprites/Objects/Hearth.png" type="Texture" id=3]
+[ext_resource path="res://Audio/SFX/Beeps/Heart_appear.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/SFX/Beeps/Heart_pickup_computer.wav" type="AudioStream" id=5]
+[ext_resource path="res://Scripts/Objects/Items/HeartItem.gd" type="Script" id=6]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=7]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0.0247525, 0.981818 ), 0.0, -6.19773, 0, 0, Vector2( 1, 0 ), -3.29015, 0.0, 0, 0 ]
+
+[node name="Item" instance=ExtResource( 1 )]
+despawn_time = 5.0
+
+[node name="Heart" type="Node2D" parent="." index="0"]
+script = ExtResource( 6 )
+
+[node name="Sprite" type="TextureRect" parent="Heart" index="0"]
+margin_left = -8.0
+margin_top = -8.0
+margin_right = 8.0
+margin_bottom = 8.0
+rect_pivot_offset = Vector2( 8, 8 )
+texture = ExtResource( 3 )
+
+[node name="Particles" type="CPUParticles2D" parent="Heart" index="1"]
+emitting = false
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource( 3 )
+direction = Vector2( 0, 0 )
+spread = 180.0
+initial_velocity = 73.39
+initial_velocity_random = 1.0
+scale_amount = 0.8
+scale_amount_random = 1.0
+scale_amount_curve = SubResource( 1 )
+
+[node name="SFX" type="Node" parent="Heart" index="2"]
+
+[node name="Spawn" type="AudioStreamPlayer" parent="Heart/SFX" index="0"]
+stream = ExtResource( 4 )
+bus = "SFX"
+
+[node name="Select" type="AudioStreamPlayer" parent="Heart/SFX" index="1"]
+bus = "SFX"
+script = ExtResource( 7 )
+samples = [ ExtResource( 2 ) ]
+random_volume_range = 0.7
+random_pitch_range = 0
+
+[node name="Click" type="AudioStreamPlayer" parent="Heart/SFX" index="2"]
+bus = "SFX"
+script = ExtResource( 7 )
+samples = [ ExtResource( 5 ) ]
+random_volume_range = 0.2
+random_pitch_range = 0
+
+[connection signal="mouse_entered" from="Heart/Sprite" to="Heart" method="_on_Sprite_mouse_entered"]
+[connection signal="mouse_exited" from="Heart/Sprite" to="Heart" method="_on_Sprite_mouse_exited"]

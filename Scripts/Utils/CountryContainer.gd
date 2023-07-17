@@ -37,7 +37,7 @@ func spawn_item():
 	var picked_num = rand_range(0, max_country)
 
 	var max_item = items.size()
-	var picked_item = rand_range(0, max_item)
+	var picked_item = items[rand_range(0, max_item)]
 
 	var country = children[picked_num]
 	country.spawn_item(picked_item)

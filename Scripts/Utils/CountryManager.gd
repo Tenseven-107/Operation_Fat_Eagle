@@ -14,6 +14,8 @@ export (float) var min_spawn_time: float = 2
 
 var risk: float = 0
 export (float) var risk_increase: float = 0.05
+var item_time: int = 0
+export (int, 2, 10) var item_max_time: int = 2
 
 
 
@@ -49,6 +51,14 @@ func spawn_timeout():
 
 		spawn_timer.start()
 		country_container.spawn_plane()
+
+		item_time += 1
+		if item_time > item_max_time:
+			item_time = 0
+			country_container.spawn_item()
+
+		if risk == ((max_spawn_time - min_spawn_time) / risk_increase) / 10:
+			item_time -= 1
 
 
 

@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Objects/Items/OperationItem.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Objects/Operation_sprite.png" type="Texture" id=2]
 [ext_resource path="res://Prefabs/Objects/Item.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Audio/SFX/Beeps/Eagle_OS_notification.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/SFX/Beeps/Eagle_OS_popup.wav" type="AudioStream" id=5]
+[ext_resource path="res://Audio/SFX/Boots/Taxes.wav" type="AudioStream" id=6]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=7]
 
 [node name="Item" instance=ExtResource( 3 )]
 
@@ -15,9 +19,35 @@ margin_top = -8.0
 margin_right = 7.0
 margin_bottom = 7.0
 rect_pivot_offset = Vector2( 8, 8 )
-value = 100.0
+max_value = 2.5
+step = 0.1
 texture_progress = ExtResource( 2 )
+fill_mode = 4
 
 [node name="Timer" type="Timer" parent="Operation" index="1"]
-wait_time = 2.5
+wait_time = 5.0
 one_shot = true
+
+[node name="SFX" type="Node" parent="Operation" index="2"]
+
+[node name="Spawn" type="AudioStreamPlayer" parent="Operation/SFX" index="0"]
+stream = ExtResource( 6 )
+bus = "SFX"
+
+[node name="Select" type="AudioStreamPlayer" parent="Operation/SFX" index="1"]
+bus = "SFX"
+script = ExtResource( 7 )
+samples = [ ExtResource( 5 ) ]
+random_volume_range = 0.7
+random_pitch_range = 0
+
+[node name="Click" type="AudioStreamPlayer" parent="Operation/SFX" index="2"]
+bus = "SFX"
+script = ExtResource( 7 )
+samples = [ ExtResource( 4 ) ]
+random_volume_range = 0.7
+random_pitch_range = 0
+
+[connection signal="mouse_entered" from="Operation/Operation_bar" to="Operation" method="_on_Operation_bar_mouse_entered"]
+[connection signal="mouse_exited" from="Operation/Operation_bar" to="Operation" method="_on_Operation_bar_mouse_exited"]
+[connection signal="timeout" from="Operation/Timer" to="Operation" method="_on_Timer_timeout"]

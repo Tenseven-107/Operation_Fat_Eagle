@@ -5,6 +5,9 @@ class_name OPManager
 export (NodePath) var money_manager_path = null
 var money_manager: MoneyManager = null
 
+export (NodePath) var sfx_path = null
+var sfx = null
+
 var payout_timer: Timer
 export (float) var payout_time: float = 15
 var upgrade_timer: Timer
@@ -22,6 +25,9 @@ export (int) var added_price: int = 5
 func _ready():
 	money_manager = get_node(money_manager_path)
 	instance_timers()
+
+	if sfx_path != null:
+		sfx = get_node(sfx_path)
 
 func instance_timers():
 	payout_timer = Timer.new()
@@ -58,6 +64,8 @@ func upgrade():
 func payday():
 	payout_timer.start()
 	money_manager.add_money(payout_money)
+
+	if is_instance_valid(sfx): sfx.play()
 
 
 

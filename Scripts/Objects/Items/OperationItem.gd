@@ -15,6 +15,7 @@ var activated: bool = false
 
 export (float) var time: float = 2.5
 export (int) var removed_money: int = 50
+export (int) var added_money: int = 100
 
 export (Vector2) var interact_scale: Vector2 = Vector2(1.5, 1.5)
 
@@ -38,6 +39,7 @@ func _process(delta):
 		activated = true
 		timer.stop()
 
+		main_item.money_manager.add_money(added_money)
 		main_item.start_despawn()
 
 		click.play()

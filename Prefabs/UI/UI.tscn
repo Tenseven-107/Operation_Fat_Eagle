@@ -167,6 +167,7 @@ tracks/1/keys = {
 
 [node name="OPManager" parent="." instance=ExtResource( 15 )]
 money_manager_path = NodePath("../MoneyManager")
+sfx_path = NodePath("../Control/Audio/OffshoreFarm")
 
 [node name="Control" type="Control" parent="."]
 pause_mode = 2
@@ -539,6 +540,15 @@ random_pitch_range = 0.7
 [node name="Farm" type="AudioStreamPlayer" parent="Control/Audio"]
 pitch_scale = 2.0
 bus = "SFX"
+script = ExtResource( 14 )
+samples = [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 13 ) ]
+random_strategy = 1
+random_volume_range = 0
+random_pitch_range = 0
+
+[node name="OffshoreFarm" type="AudioStreamPlayer" parent="Control/Audio"]
+pitch_scale = 2.0
+bus = "Background SFX"
 script = ExtResource( 14 )
 samples = [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 13 ) ]
 random_strategy = 1

@@ -9,11 +9,11 @@ var active: bool = true
 
 var spawn_timer: Timer
 var current_spawn_time: float
-export (float) var max_spawn_time: float = 45
-export (float) var min_spawn_time: float = 2
+export (float) var max_spawn_time: float = 15
+export (float) var min_spawn_time: float = 3
 
 var risk: float = 0
-export (float) var risk_increase: float = 0.05
+export (float) var risk_increase: float = 0.01
 var item_time: int = 0
 export (int, 2, 10) var item_max_time: int = 2
 

@@ -9,3 +9,18 @@ export_presets.cfg
 # Mono-specific ignores
 .mono/
 data_*/
+Audio/Music/505283__carnotaurusteam__1-soundtrack.wav.import
+Audio/Music/505283__carnotaurusteam__1-soundtrack.wav
+Builds/1.0/Linux/OFE_Linux_build-1.0.x86_64
+Builds/1.0/web/Index.apple-touch-icon.png
+Builds/1.0/web/Index.apple-touch-icon.png.import
+Builds/1.0/web/Index.audio.worklet.js
+Builds/1.0/web/Index.html
+Builds/1.0/web/Index.icon.png
+Builds/1.0/web/Index.icon.png.import
+Builds/1.0/web/Index.js
+Builds/1.0/web/Index.pck
+Builds/1.0/web/Index.png
+Builds/1.0/web/Index.png.import
+Builds/1.0/web/Index.wasm
+Builds/1.0/windows/Operation_Fat_Eagle.exe
